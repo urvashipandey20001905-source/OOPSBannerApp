@@ -1,0 +1,83 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class UC8 {
+
+    /**
+     * Utility method to create and return the character pattern map
+     * @return Map containing character patterns
+     */
+    public static Map<Character, String[]> createCharacterPatterns() {
+
+        Map<Character, String[]> patterns = new HashMap<>();
+
+        String[] O = {
+                " ***** ",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                " ***** "
+        };
+
+        String[] P = {
+                "****** ",
+                "*     *",
+                "*     *",
+                "****** ",
+                "*      ",
+                "*      ",
+                "*      "
+        };
+
+        String[] S = {
+                " ***** ",
+                "*     *",
+                "*      ",
+                " ***** ",
+                "      *",
+                "*     *",
+                " ***** "
+        };
+
+        patterns.put('O', O);
+        patterns.put('P', P);
+        patterns.put('S', S);
+
+        return patterns;
+    }
+
+    /**
+     * Method to render banner word
+     * @param message word to display
+     * @param patterns map containing patterns
+     */
+    public static void renderBanner(String message, Map<Character, String[]> patterns) {
+
+        for (int row = 0; row < 7; row++) {
+
+            StringBuilder line = new StringBuilder();
+
+            for (char ch : message.toCharArray()) {
+
+                String[] pattern = patterns.get(ch);
+
+                if (pattern != null) {
+                    line.append(pattern[row]).append("  ");
+                }
+            }
+
+            System.out.println(line);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Map<Character, String[]> patterns = createCharacterPatterns();
+
+        String message = "OOPS";
+
+        renderBanner(message, patterns);
+    }
+}
